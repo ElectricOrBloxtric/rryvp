@@ -21,7 +21,12 @@
         [data-player-container],
         yt-player,
         .yt-core-image,
-        img[alt*="thumbnail"] {
+        img[alt*="thumbnail"],
+        #inline-player,
+        #content > yt-lockup-view-model > div > a > yt-thumbnail-view-model > div > img,
+        .ytThumbnailViewModelLarge,
+        ytd-thumbnail[size="medium"] a.ytd-thumbnail,
+        ytd-thumbnail[size="medium"]::before {
             border-radius: 0 !important;
         }
     `;
