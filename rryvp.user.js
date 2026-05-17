@@ -1,9 +1,11 @@
 // ==UserScript==
-// @name         Return Rectangle YouTube Video Player
+// @name         RRYVP
 // @namespace    http://tampermonkey.net/
 // @version      2.2
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
+// @downloadURL  https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
+// @updateURL    https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
 // @match        *://*.youtube.com/*
 // @grant        GM_addStyle
 // ==/UserScript==
