@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Return Rectangle YouTube Video Player
 // @namespace    http://tampermonkey.net/
-// @version      2.0
+// @version      2.2
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
 // @match        *://*.youtube.com/*
