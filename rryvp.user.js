@@ -14,20 +14,67 @@
     'use strict';
 
     const css = `
-        #ytd-player,
-        #movie_player,
-        .html5-video-player,
-        .ytp-player-container,
-        [data-player-container],
-        yt-player,
-        .yt-core-image,
-        img[alt*="thumbnail"],
-        #inline-player,
-        #content > yt-lockup-view-model > div > a > yt-thumbnail-view-model > div > img,
+        ytd-thumbnail,
+        ytd-thumbnail img,
         .ytThumbnailViewModelLarge,
-        ytd-thumbnail[size="medium"] a.ytd-thumbnail,
-        ytd-thumbnail[size="medium"]::before {
-            border-radius: 0 !important;
+        ytd-playlist-thumbnail,
+        ytd-playlist-thumbnail img,
+        .style-scope.ytd-rich-grid-media,
+        .yt-core-image,
+        .yt-core-image--fill-parent-height,
+        .yt-core-image--fill-parent-width,
+        ytd-moving-thumbnail-renderer,
+        ytd-moving-thumbnail-renderer img,
+        #thumbnail-container,
+        #thumbnail-container img {
+            border-radius: 0px !important;
+        }
+
+        #img {
+            border-radius: 50% !important;
+            object-fit: cover !important;
+        }
+
+        ytd-rich-grid-slim-media,
+        ytd-rich-grid-slim-media ytd-thumbnail,
+        ytd-reel-item-renderer,
+        ytd-reel-item-renderer ytd-thumbnail,
+        .ytd-reel-video-renderer img,
+        .ytp-inline-preview-ui {
+            border-radius: 0px !important;
+        }
+
+        ytd-watch-flexy,
+        ytd-watch-flexy #ytd-player,
+        ytd-watch-flexy[rounded-player-large] #ytd-player,
+        #player-container-outer,
+        #player-container-inner,
+        .html5-video-player,
+        .html5-main-video,
+        #ytd-player,
+        .ytp-inline-preview-scrim,
+        .inline-preview-player {
+            border-radius: 0px !important;
+        }
+
+        .ytp-ce-video,
+        .ytp-ce-channel,
+        .ytp-ce-playlist,
+        .ytp-ce-expanding-overlay,
+        .ytp-videowall-still,
+        .ytp-videowall-still-image,
+        .ytp-sb-subscribe,
+        .ytp-sb-unsubscribe {
+            border-radius: 0px !important;
+        }
+
+        ytd-miniplayer,
+        ytd-miniplayer #player-container,
+        ytd-miniplayer #video-container,
+        ytd-miniplayer #card,
+        #video-player-container,
+        #miniplayer-bar {
+            border-radius: 0px !important;
         }
     `;
 
