@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Return Rectangle YouTube Video Player
 // @namespace    http://tampermonkey.net/
-// @version      2.2
+// @version      2.3
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
 // @downloadURL  https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
@@ -28,6 +28,11 @@
         #thumbnail-container,
         #thumbnail-container img {
             border-radius: 0px !important;
+        }
+
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > img {
+            border-radius: 50% !important;
+            object-fit: cover !important;
         }
 
         #img {
@@ -94,8 +99,14 @@
         };
     }
 
+    const reelChannelAvatarSelector = "#experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > img";
+
     const observer = new MutationObserver(debounce(() => {
         document.querySelectorAll("[style*='border-radius']").forEach(el => {
+            if (el.matches(reelChannelAvatarSelector)) {
+                return;
+            }
+
             if (el.style.borderRadius && el.style.borderRadius !== "0px") {
                 el.style.borderRadius = "0px";
             }
