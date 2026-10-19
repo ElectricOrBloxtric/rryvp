@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Return Rectangle YouTube Video Player
 // @namespace    http://tampermonkey.net/
-// @version      2.3
+// @version      2.4
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
 // @downloadURL  https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
@@ -30,8 +30,13 @@
             border-radius: 0px !important;
         }
 
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div,
         #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > img {
             border-radius: 50% !important;
+            overflow: hidden !important;
             object-fit: cover !important;
         }
 
@@ -101,9 +106,26 @@
 
     const reelChannelAvatarSelector = "#experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > img";
 
+    function enforceReelChannelAvatarShape() {
+        const avatar = document.querySelector(reelChannelAvatarSelector);
+        if (!avatar) {
+            return;
+        }
+
+        let element = avatar;
+        while (element && !element.matches("yt-decorated-avatar-view-model")) {
+            element.style.setProperty("border-radius", "50%", "important");
+            element.style.setProperty("overflow", "hidden", "important");
+            element = element.parentElement;
+        }
+    }
+
     const observer = new MutationObserver(debounce(() => {
+        enforceReelChannelAvatarShape();
+
+        const avatar = document.querySelector(reelChannelAvatarSelector);
         document.querySelectorAll("[style*='border-radius']").forEach(el => {
-            if (el.matches(reelChannelAvatarSelector)) {
+            if (avatar && (el === avatar || avatar.contains(el))) {
                 return;
             }
 
@@ -116,9 +138,12 @@
     observer.observe(document.body, {
         childList: true,
         subtree: true,
-        attributes: false,
+        attributes: true,
+        attributeFilter: ["class", "style"],
         characterData: false
     });
+
+    enforceReelChannelAvatarShape();
 
     window.addEventListener("beforeunload", () => observer.disconnect());
 })();
