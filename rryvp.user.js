@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Return Rectangle YouTube Video Player
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/ElectricOrBloxtric/rryvp
 // @version      2.4
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
