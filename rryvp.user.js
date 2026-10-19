@@ -31,11 +31,11 @@
             border-radius: 0px !important;
         }
 
-        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape,
-        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div,
-        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div,
-        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div,
-        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > img {
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div,
+        #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > div {
             border-radius: 50% !important;
             overflow: hidden !important;
             object-fit: cover !important;
@@ -105,7 +105,7 @@
         };
     }
 
-    const reelChannelAvatarSelector = "#experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(2) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > img";
+    const reelChannelAvatarSelector = "#experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > div";
 
     function enforceReelChannelAvatarShape() {
         const avatar = document.querySelector(reelChannelAvatarSelector);
