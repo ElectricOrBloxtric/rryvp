@@ -2,7 +2,7 @@
 // @name         Return Rectangle YouTube Video Player
 // @namespace    https://github.com/ElectricOrBloxtric/rryvp
 // @version      2.6
-// @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
+// @description  Remove the border-radius from the YouTube video player and makes it fully rectangle again
 // @author       ElectricOrBloxtric
 // @license      MIT
 // @downloadURL  https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
