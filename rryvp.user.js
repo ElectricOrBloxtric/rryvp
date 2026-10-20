@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Return Rectangle YouTube Video Player
 // @namespace    https://github.com/ElectricOrBloxtric/rryvp
-// @version      2.4
+// @version      2.5
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
 // @license      MIT
@@ -44,6 +44,10 @@
         #img {
             border-radius: 50% !important;
             object-fit: cover !important;
+        }
+
+        html.rryvp-post-page #img {
+            border-radius: 0px !important;
         }
 
         ytd-rich-grid-slim-media,
@@ -107,6 +111,15 @@
 
     const reelChannelAvatarSelector = "#experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > div";
 
+    function updatePostImageShape() {
+        const path = window.location.pathname;
+        const isPostPage = path === "/post" ||
+            path.startsWith("/post/") ||
+            /\/posts(?:\/|$)/.test(path);
+
+        document.documentElement.classList.toggle("rryvp-post-page", isPostPage);
+    }
+
     function enforceReelChannelAvatarShape() {
         const avatar = document.querySelector(reelChannelAvatarSelector);
         if (!avatar) {
@@ -144,7 +157,10 @@
         characterData: false
     });
 
+    updatePostImageShape();
     enforceReelChannelAvatarShape();
 
+    window.addEventListener("popstate", updatePostImageShape);
+    window.addEventListener("yt-navigate-finish", updatePostImageShape);
     window.addEventListener("beforeunload", () => observer.disconnect());
 })();
