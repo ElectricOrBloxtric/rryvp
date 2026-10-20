@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Return Rectangle YouTube Video Player
 // @namespace    https://github.com/ElectricOrBloxtric/rryvp
-// @version      2.5
+// @version      2.6
 // @description  Remove the border-radius from the YouTube video player and makes it fully Rectangle again
 // @author       ElectricOrBloxtric
 // @license      MIT
@@ -36,6 +36,13 @@
         #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div,
         #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div,
         #experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > div {
+            border-radius: 50% !important;
+            overflow: hidden !important;
+            object-fit: cover !important;
+        }
+
+        ytd-reel-player-overlay-renderer-cow yt-decorated-avatar-view-model yt-avatar-shape,
+        ytd-reel-player-overlay-renderer-cow yt-decorated-avatar-view-model yt-avatar-shape * {
             border-radius: 50% !important;
             overflow: hidden !important;
             object-fit: cover !important;
@@ -109,7 +116,7 @@
         };
     }
 
-    const reelChannelAvatarSelector = "#experiment-overlay > ytd-reel-player-overlay-renderer-cow > yt-reel-player-overlay-view-model > div.ytReelPlayerOverlayViewModelMetadataContainer.ytReelPlayerOverlayViewModelMetadataContainerRounded > div > yt-reel-metapanel-view-model > div:nth-child(1) > yt-reel-channel-bar-view-model > yt-decorated-avatar-view-model > yt-avatar-shape > div > div > div > div";
+    const reelChannelAvatarSelector = "ytd-reel-player-overlay-renderer-cow yt-decorated-avatar-view-model";
 
     function updatePostImageShape() {
         const path = window.location.pathname;
@@ -121,25 +128,25 @@
     }
 
     function enforceReelChannelAvatarShape() {
-        const avatar = document.querySelector(reelChannelAvatarSelector);
-        if (!avatar) {
+        const avatars = document.querySelectorAll(reelChannelAvatarSelector);
+        if (!avatars.length) {
             return;
         }
 
-        let element = avatar;
-        while (element && !element.matches("yt-decorated-avatar-view-model")) {
-            element.style.setProperty("border-radius", "50%", "important");
-            element.style.setProperty("overflow", "hidden", "important");
-            element = element.parentElement;
-        }
+        avatars.forEach(avatar => {
+            avatar.querySelectorAll("yt-avatar-shape, yt-avatar-shape *").forEach(element => {
+                element.style.setProperty("border-radius", "50%", "important");
+                element.style.setProperty("overflow", "hidden", "important");
+                element.style.setProperty("object-fit", "cover", "important");
+            });
+        });
     }
 
     const observer = new MutationObserver(debounce(() => {
         enforceReelChannelAvatarShape();
 
-        const avatar = document.querySelector(reelChannelAvatarSelector);
         document.querySelectorAll("[style*='border-radius']").forEach(el => {
-            if (avatar && (el === avatar || avatar.contains(el))) {
+            if (el.closest("ytd-reel-player-overlay-renderer-cow yt-decorated-avatar-view-model")) {
                 return;
             }
 
