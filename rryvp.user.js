@@ -7,7 +7,7 @@
 // @license      MIT
 // @downloadURL  https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
 // @updateURL    https://raw.githubusercontent.com/ElectricOrBloxtric/rryvp/main/rryvp.user.js
-// @match        *://*.youtube.com/*
+// @match        *://www.youtube.com/*
 // @grant        GM_addStyle
 // ==/UserScript==
 
